@@ -53,8 +53,8 @@ struct ContentView: View {
                     isNight.toggle()
                 } label: {
                     WeatherButton(title: "Change Day Time",
-                                  textColor: .blue,
-                                  backgroundColor: .white)
+                                  textColor: .white,
+                                  backgroundColor: .mint)
                 }
                 
                 Spacer()
@@ -79,9 +79,8 @@ struct WeatherDayView: View {
                 .font(.system(size: 16, weight: .medium, design: .default))
                 .foregroundStyle(.white)
             Image(systemName: imageName)
-                .symbolRenderingMode(.hierarchical)
+                .symbolRenderingMode(.multicolor)
                 .resizable()
-                .foregroundStyle(.pink)
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 40, height: 40)
             
@@ -97,10 +96,14 @@ struct BackgroundView: View {
     var isNight: Bool
     
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: [isNight ? .black : .blue, isNight ? .gray : Color("lightBlue")]),
-                       startPoint: .topLeading,
-                       endPoint: .bottomTrailing)
-        .ignoresSafeArea()
+//        LinearGradient(gradient: Gradient(colors: [isNight ? .black : .blue, isNight ? .gray : Color("lightBlue")]),
+//                       startPoint: .topLeading,
+//                       endPoint: .bottomTrailing)
+//        .ignoresSafeArea()
+        
+        ContainerRelativeShape()
+            .fill(isNight ? Color.black.gradient : Color.blue.gradient)
+            .ignoresSafeArea()
     }
 }
 
